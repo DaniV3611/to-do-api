@@ -15,8 +15,14 @@ CRUD application
    cd to-do-api
    ```
 3. Install dependencies:
+
    ```sh
    npm install
+   ```
+
+4. Make prisma migrations to create the database
+   ```sh
+   npx prisma migrate dev --name init
    ```
 
 ## Usage
