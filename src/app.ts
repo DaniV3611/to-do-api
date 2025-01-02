@@ -16,7 +16,7 @@ app.use("/tasks", tasksRoutes);
 
 // Default route
 app.get("/*", (req: Request, res: Response) => {
-  res.status(404).json("Not Found");
+  res.status(404).json("Not Found, go to /tasks");
 });
 
 export default app;
