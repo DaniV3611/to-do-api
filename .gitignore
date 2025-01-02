@@ -1,0 +1,12 @@
+node_modules
+# Keep environment variables out of version control
+.env
+# Ignores the migrations folder
+migrations
+# Keep SQLite files out of version control
+dev.db
+dev.db-journal
+# Ignores the build folder
+dist
+# Ignore the .vscode folder
+.vscode
