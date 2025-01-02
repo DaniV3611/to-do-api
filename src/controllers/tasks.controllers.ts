@@ -11,8 +11,8 @@ import {
 
 // Controller to read the request, create a task and send a response
 export const createTask = async (req: Request, res: Response) => {
-  const { tittle, description, parentId } = req.body;
-  const taskId = await createTaskDB(tittle, description, parentId);
+  const { title, description, parentId } = req.body;
+  const taskId = await createTaskDB(title, description, parentId);
   res.json(`Task created with id: ${taskId}`);
 };
 
