@@ -6,6 +6,7 @@ import {
   getAllTasks,
   getTaskByID,
   updateTask,
+  deleteTask,
 } from "../controllers/tasks.controllers";
 
 // Creates a new router
@@ -16,5 +17,6 @@ router.get("/", getAllTasks);
 router.get("/:id", getTaskByID);
 router.post("/", createTask);
 router.put("/:id", updateTask);
+router.delete("/:id", deleteTask);
 
 export default router;
