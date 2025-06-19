@@ -54,19 +54,25 @@ A complete REST API for task and project management with advanced features like 
    cd to-do-api
    ```
 
-3. **Install dependencies:**
+3. **Set the environment variables in a `.env` file**:
+
+   ```bash
+   DATABASE_URL=file:./dev.db
+   ```
+
+4. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-4. **Set up the database:**
+5. **Set up the database:**
 
    ```bash
    npx prisma migrate dev --name init
    ```
 
-5. **Generate Prisma client:**
+6. **Generate Prisma client:**
    ```bash
    npx prisma generate
    ```
@@ -82,7 +88,7 @@ npm run dev
 ### Production mode:
 
 ```bash
-npm start
+npm build && npm start
 ```
 
 The API will be available at `http://localhost:3000`
