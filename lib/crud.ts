@@ -32,6 +32,7 @@ export const getAllTasksDB = async () => {
   const tasks = await db.task.findMany({
     include: {
       children: true,
+      project: true,
     },
   });
   return tasks;
@@ -45,6 +46,7 @@ export const getTaskByIdDB = async (id: number) => {
     },
     include: {
       children: true,
+      project: true,
     },
   });
   return task;
@@ -86,4 +88,62 @@ export const deleteTaskDB = async (id: number) => {
     },
   });
   return task;
+};
+
+// * CRUD Operations for Projects over the database
+
+// Create a new project
+export const createProjectDB = async (
+  name: string,
+  description: string | null = null
+) => {
+  const project = await db.project.create({
+    data: { name, description },
+  });
+  return project;
+};
+
+// Get all projects
+export const getAllProjectsDB = async (includeTasks: boolean = false) => {
+  const projects = await db.project.findMany({
+    include: {
+      tasks: includeTasks,
+    },
+  });
+  return projects;
+};
+
+// Get a project by id
+export const getProjectByIdDB = async (
+  id: number,
+  includeTasks: boolean = true
+) => {
+  const project = await db.project.findUnique({
+    where: { id },
+    include: { tasks: includeTasks },
+  });
+  return project;
+};
+
+// Update a project
+export const updateProjectDB = async (
+  id: number,
+  updateData: {
+    name?: string;
+    description?: string | null;
+  }
+) => {
+  const project = await db.project.update({
+    where: { id },
+    data: updateData,
+  });
+  return project;
+};
+
+// Delete a project
+export const deleteProjectDB = async (id: number) => {
+  const project = await db.project.delete({
+    where: { id },
+  });
+  return project;
 };
