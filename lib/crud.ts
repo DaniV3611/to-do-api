@@ -6,7 +6,10 @@ import { db } from "./prisma";
 export const createTaskDB = async (
   title: string,
   description: string,
-  parent: number | null = null
+  parent: number | null = null,
+  project: number | null = null,
+  notes: string | null = null,
+  date: Date | null = null
 ) => {
   // Create a new task
   const task = await db.task.create({
@@ -14,6 +17,9 @@ export const createTaskDB = async (
       title: title,
       description: description,
       parentId: parent,
+      projectId: project,
+      notes: notes,
+      date: date,
     },
   });
   return task.id;
@@ -21,7 +27,11 @@ export const createTaskDB = async (
 
 // Get all tasks
 export const getAllTasksDB = async () => {
-  const tasks = await db.task.findMany();
+  const tasks = await db.task.findMany({
+    include: {
+      children: true,
+    },
+  });
   return tasks;
 };
 
